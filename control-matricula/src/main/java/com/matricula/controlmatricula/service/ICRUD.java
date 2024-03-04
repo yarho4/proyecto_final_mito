@@ -1,5 +1,7 @@
 package com.matricula.controlmatricula.service;
 
+import com.matricula.controlmatricula.model.Matricula;
+
 import java.util.List;
 
 public interface ICRUD<T, ID> {

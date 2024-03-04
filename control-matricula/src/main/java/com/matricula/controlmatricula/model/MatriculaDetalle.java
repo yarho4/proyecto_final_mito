@@ -1,6 +1,8 @@
 package com.matricula.controlmatricula.model;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,4 +27,7 @@ public class MatriculaDetalle {
     @ManyToOne
     @JoinColumn(name = "id_curso", nullable = false, foreignKey = @ForeignKey(name = "FX_MAT_DETALLE_CURSO"))
     private Curso curso;
+
+    @Column(nullable = false, length = 30)
+    private String aula;
 }
