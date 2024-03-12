@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@Data
+//@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@ToString(onlyExplicitlyIncluded = true)
 public class MatriculaDetalleDTO {
 
     private Integer idMatriculaDetalle;
@@ -21,6 +22,7 @@ public class MatriculaDetalleDTO {
     @NotNull
     private CursoDTO curso;
 
+    @ToString.Include
     @NotNull
     private String aula;
 

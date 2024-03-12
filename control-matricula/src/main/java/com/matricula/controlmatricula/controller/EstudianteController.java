@@ -62,4 +62,28 @@ public class EstudianteController {
     private EstudianteDTO converToDTO(Estudiante estudiante){
         return modelMapper.map(estudiante, EstudianteDTO.class);
     }
+
+    @GetMapping("/get/nombres/apellidos")
+    public ResponseEntity<GenericResponse<EstudianteDTO>> getNombresApellidos(@RequestParam("nombres") String nombres, @RequestParam("apellidos") String apellidos) throws Exception{
+
+        List<EstudianteDTO> list = service.getNombresApellidos(nombres, apellidos).stream().map(this::converToDTO).toList() ;
+        return new ResponseEntity<>(new GenericResponse<>(200, "success", list), HttpStatus.OK);
+
+    }
+
+    @GetMapping("/estudiantemaxedad")
+    public ResponseEntity<EstudianteDTO> getEstudianteMaxEdad() throws Exception{
+
+        EstudianteDTO  dto = converToDTO(service.getEstudianteMaxEdad());
+        return new ResponseEntity<>(dto, HttpStatus.OK);
+
+    }
+
+    @GetMapping("/estudianteporedad")
+    public ResponseEntity<List<EstudianteDTO>> getEstudiantesPorEdad() throws Exception{
+
+        List<EstudianteDTO>  list = service.getEstudiantesPorEdad().stream().map(this::converToDTO).toList();
+        return new ResponseEntity<>(list, HttpStatus.OK);
+
+    }
 }

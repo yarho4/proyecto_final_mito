@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/matricula")
@@ -53,6 +54,12 @@ public class MatriculaController {
     public ResponseEntity<Void> delete(@PathVariable("id") Integer id) throws Exception {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/bycurso")
+    public ResponseEntity<Map<String, List<String>>> getMatriculaCursosEstudiantes(){
+        Map<String, List<String>> byCurso = service.getMatriculaCursosEstudiantes();
+        return new ResponseEntity<>(byCurso, HttpStatus.OK);
     }
 
     private Matricula converToEntity(MatriculaDTO dto){
