@@ -34,7 +34,8 @@ public class MatriculaServiceImpl extends CRUDImpl<Matricula, Integer> implement
 
         Map<String, List<String>> byCurso =streamDetalle
                 .collect(Collectors.groupingBy(d -> d.getCurso().getNombre(),
-                        Collectors.mapping(d -> d.getMatricula().getEstudiante().getNombres(), Collectors.toList())));
+                        Collectors.mapping(d -> d.getMatricula().getEstudiante().getNombres() + " " +
+                                d.getMatricula().getEstudiante().getApellidos(), Collectors.toList())));
 
         System.out.println(byCurso);
 
